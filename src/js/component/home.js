@@ -9,9 +9,9 @@ export const Name = () => {
     const [state, setState] = useState("");
     console.log("store", store.data);
     return (
+        
             <input onChange={e => setState(e.target.value)} />
             <button onClick={() => actions.updateArray(state)}>Update</button>
-
             {store.data.map((e, index) => (
                 <div key={index} className="text-center mt-5">
                     <p>{e}</p>
