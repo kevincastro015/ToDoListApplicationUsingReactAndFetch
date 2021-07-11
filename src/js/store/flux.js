@@ -16,10 +16,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
+			updateArray: newData => {
+				let data = getStore().data;
+				setStore({ data: [...data, newData] });
 			},
-			loadSomeData: () => {
+			updateData: parameter => {
+				setStore({ data: parameter });
 				/**
 					fetch().then().then(data => setStore({ "foo": data.bar }))
 				*/
