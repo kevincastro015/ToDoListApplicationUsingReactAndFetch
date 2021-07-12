@@ -21,12 +21,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let data = getStore().data;
 				setStore({ data: [...data, newData] });
 			},
-			updateData: parameter => {
-				setStore({ data: parameter });
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			deleteElement: position => {
+				let data = getStore().data;
+				let newArray = data.filter((item, index) => position !== index);
+				setStore({ data: newArray });
 			},
+
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();

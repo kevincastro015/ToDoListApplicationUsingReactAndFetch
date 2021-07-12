@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import PropTypes from "prop-types";
-import { Context } from "..store/appContext";
+import { Context } from "../store/appContext";
 
 const Button = ({ button, style, index }) => {
 	// const { store } = useContext(Context);
