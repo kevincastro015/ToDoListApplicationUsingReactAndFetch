@@ -6,18 +6,31 @@ import { Context } from "../store/appContext";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
-	const [state, setState] = useState("");
+	const [todo, setTodo] = useState("");
 
 	return (
-		<>
-			<input onChange={e => setState(e.target.value)} />
-			<button onClick={() => actions.updateArray(state)}>Add</button>
-			{store.data.map((e, index) => (
-				<div key={e} className="text-center mt-5">
-					{e}
-					<i onClick={() => actions.deleteElement(index)} className="far fa-window-close" />
-				</div>
-			))}
-		</>
+		<div className="mt-5 bg-light mx-auto p-4 text-secondary" style={{ width: 400 }}>
+			<h1 className="text-center">todos</h1>
+			<div className="border text-center ">
+				<input
+					className="input"
+					placeholder="What needs to be done"
+					onChange={e => setTodo(e.target.value)}
+					value={todo}
+				/>
+				<button className="btn btn-success text-center" onClick={() => actions.updateArray(todo)}>
+					Add
+				</button>
+				{store.data.map((e, index) => (
+					<div key={e} className="border-top border-bottom text-secondary text-center">
+						{e}
+						<i onClick={() => actions.deleteElement(index)} className="far fa-window-close" />
+					</div>
+				))}
+				<div className="counter text-secondary text-left">Item(s) Left</div>
+			</div>
+			<div className="border mx-auto" style={{ width: "98%", height: 3 }} />
+			<div className="border mx-auto" style={{ width: "96%", height: 3 }} />
+		</div>
 	);
 };
