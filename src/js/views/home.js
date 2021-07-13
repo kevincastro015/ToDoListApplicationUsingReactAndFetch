@@ -22,12 +22,13 @@ export const Home = () => {
 					Add
 				</button>
 				{store.data.map((e, index) => (
-					<div key={e} className="border-top border-bottom text-secondary text-center">
+					<div key={e} className="border-top border-bottom text-secondary text-center ">
 						{e}
+
 						<i onClick={() => actions.deleteElement(index)} className="far fa-window-close" />
 					</div>
 				))}
-				<div className="counter text-secondary text-left">Item(s) Left</div>
+				<div className="counter text-secondary text-left">Item(s) Left {store.data.length} </div>
 			</div>
 			<div className="border mx-auto" style={{ width: "98%", height: 3 }} />
 			<div className="border mx-auto" style={{ width: "96%", height: 3 }} />
