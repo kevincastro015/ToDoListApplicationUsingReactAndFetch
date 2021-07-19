@@ -32,6 +32,11 @@ export const Home = () => {
 			</div>
 			<div className="border mx-auto" style={{ width: "98%", height: 3 }} />
 			<div className="border mx-auto" style={{ width: "96%", height: 3 }} />
+			{/* {!edit ? (
+				<i className="fas fa-pencil-alt" onClick={() => setEdit(true)} />
+			) : (
+				<i className="far fa-check-square" onClick={() => setEdit(false)} />
+			)} */}
 		</div>
 	);
 };
