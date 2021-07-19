@@ -32,7 +32,7 @@ const injectContext = PassedComponent => {
 			 *
 			 **/
 			state.actions.getTodos();
-			state.actions.deleteElement();
+			// state.actions.deleteElement();
 		}, []);
 
 		// The initial value for the context is not null anymore, but the current state of this component,

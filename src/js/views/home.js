@@ -19,7 +19,7 @@ export const Home = () => {
 					onChange={e => setTodo(e.target.value)}
 					value={todo}
 				/>
-				<button className="btn btn-success text-center" onClick={() => actions.updateArray(todo)}>
+				<button className="btn btn-success text-center" onClick={() => actions.addTodo(todo)}>
 					Add
 				</button>
 				{store.data.map((e, index) => (
