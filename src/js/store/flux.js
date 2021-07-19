@@ -13,68 +13,34 @@ const getState = ({ getStore, getActions, setStore }) => {
 					initial: "white"
 				}
 			],
-			data: ["Mary", "Jane"]
-			// todos: []
+			data: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			updateArray: newData => {
-				let data = getStore().data;
-				setStore({ data: [...data, newData] });
-			},
-			deleteElement: position => {
-				let data = getStore().data;
-				let newArray = data.filter((item, index) => position !== index);
-				setStore({ data: newArray });
-			},
-			getTodo: () => {
+			getTodos: () => {
 				fetch("https://assets.breatheco.de/apis/fake/todos/user/kevincastro015")
 					.then(res => res.json())
-					.then(response => setStore({ todos: response }));
+					.then(res => setStore({ data: res }));
+			},
+			updateArray: newData => {
+				let obj = { label: newData, done: false };
+				let data = getStore().data;
+				setStore({ data: [...data, obj] });
+				// console.log(getStore().data);
+			},
+			deleteElement: () => {
+				fetch("https://assets.breatheco.de/apis/fake/todos/user/kevincastro015", {
+					method: "PUT", //or "POST"
+					body: JSON.stringify(), // data can be 'string' or {object}!
+					headers: {
+						"Content-Type": "application/json"
+					}
+				})
+					.then(res => res.json())
+					.then(() => getActions.getTodos());
 				// },
-				// addData: "",
-				// updateData: "",
-				// deleteData: data => {
-				// 	fetch("https://assets.breatheco.de/apis/fake/todos/user/kevincastro015", {
-				// 		method: "PUT", //or "POST"
-				// 		body: JSON.stringify(data), // data can be 'string' or {object}!
-				// 		headers: {
-				// 			"Content-Type": "application/json"
-				// 		}
-				// 	})
-				// 		.then(res => res.json())
-				// 		.then(() => getActions.getData());
-				//     },
-				//     addTitle: title => (title === "" ? setStore({ listTitle: "No title"}) : setStore({ listTitle })),
-				//     addItem: newItem => {
-				//         let newTodoList = getStore().todoList;
-				//         setStore({ todoList: [...newTodoList, newItem] });
-				//     },
-				//     deleteItem: element => {
-				//         let deleteItem = getStore().todoList;
-				//         deleteItem = deleteItem.filter(item => element !== item);
-				//     },
-				//     setStore ({ todoList: deleteItem });
-				//     },
-				//     deleteList: () => {
-				//         setStore({ todoList: [] });
-				// }
-
-				// },
-
-				// changeColor: (index, color) => {
-				// 	//get the store
-				// 	const store = getStore();
-
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
-				// const demo = store.demo.map((elm, i) => {
-				// 	if (i === index) elm.background = color;
-				// 	return elm;
-				// });
-
-				//reset the global store
-				// setStore({ demo: demo });
+				// let data = getStore().data;
+				// let newArray = data.filter((item, index) => position !== index);
+				// setStore({ data: newArray });
 			}
 		}
 	};

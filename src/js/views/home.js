@@ -22,14 +22,11 @@ export const Home = () => {
 				<button className="btn btn-success text-center" onClick={() => actions.updateArray(todo)}>
 					Add
 				</button>
-				{store.todos.map((
-					e,
-					index //change .map to .todos in flux
-				) => (
-					<div key={e} className="border-top border-bottom text-secondary text-center ">
-						{e + 1} - {element.label}
+				{store.data.map((e, index) => (
+					<div key={index} className="border-top border-bottom text-secondary text-center ">
+						{e.label}
 						<i onClick={() => actions.deleteElement(index)} className="far fa-window-close" />
-					</div> // added + 1 - {element.label}
+					</div>
 				))}
 				<div className="counter text-secondary text-left">Item(s) Left {store.data.length} </div>
 			</div>
