@@ -3,6 +3,7 @@ import React, { useState, useContext } from "react";
 import "../../styles/home.scss";
 import Button from "../component/button";
 import { Context } from "../store/appContext";
+import { element } from "prop-types";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
@@ -21,12 +22,14 @@ export const Home = () => {
 				<button className="btn btn-success text-center" onClick={() => actions.updateArray(todo)}>
 					Add
 				</button>
-				{store.data.map((e, index) => (
+				{store.todos.map((
+					e,
+					index //change .map to .todos in flux
+				) => (
 					<div key={e} className="border-top border-bottom text-secondary text-center ">
-						{e}
-
+						{e + 1} - {element.label}
 						<i onClick={() => actions.deleteElement(index)} className="far fa-window-close" />
-					</div>
+					</div> // added + 1 - {element.label}
 				))}
 				<div className="counter text-secondary text-left">Item(s) Left {store.data.length} </div>
 			</div>

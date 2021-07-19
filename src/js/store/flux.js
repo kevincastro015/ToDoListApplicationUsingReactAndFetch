@@ -14,6 +14,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}
 			],
 			data: ["Mary", "Jane"]
+			// todos: []
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -25,11 +26,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 				let data = getStore().data;
 				let newArray = data.filter((item, index) => position !== index);
 				setStore({ data: newArray });
-				// },
-				// getTodo: () => {
-				// 	fetch("https://assets.breatheco.de/apis/fake/todos/user/kevincastro015")
-				// 		.then(res => res.json())
-				// 		.then(response => setStore({ data: response }));
+			},
+			getTodo: () => {
+				fetch("https://assets.breatheco.de/apis/fake/todos/user/kevincastro015")
+					.then(res => res.json())
+					.then(response => setStore({ todos: response }));
 				// },
 				// addData: "",
 				// updateData: "",
