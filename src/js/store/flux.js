@@ -35,22 +35,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// let data = getStore().data;
 				// setStore({ data: [...data, obj] });
 				// console.log(getStore().data);
+			},
+			deleteElement: position => {
+				fetch("https://assets.breatheco.de/apis/fake/todos/user/kevincastro015", {
+					method: "PUT", //or "POST"
+					body: JSON.stringify(position), // data can be 'string' or {object}!
+					headers: {
+						"Content-Type": "application/json"
+					}
+				}).then(() => getActions().getTodos());
 			}
-			// deleteElement: position => {
-			// 	fetch("https://assets.breatheco.de/apis/fake/todos/user/kevincastro015", {
-			// 		method: "PUT", //or "POST"
-			// 		body: JSON.stringify(position), // data can be 'string' or {object}!
-			// 		headers: {
-			// 			"Content-Type": "application/json"
-			// 		}
-			// 	})
-			// 		.then(res => res.json())
-			// 		.then(() => getActions.getTodos());
-			// },
 			// let data = getStore().data;
 			// let newArray = data.filter((item, index) => position !== index);
 			// setStore({ data: newArray });
-			// }
+			// }.then(() => getActions.getTodos());
 		}
 	};
 };

@@ -1,14 +1,15 @@
 import React, { useState, useContext } from "react";
 // import rigoImage from "../../img/rigo-baby.jpg";
 import "../../styles/home.scss";
-import Button from "../component/button";
+// import Button from "../component/button";
 import { Context } from "../store/appContext";
 import { element } from "prop-types";
 
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [todo, setTodo] = useState("");
-
+	const todoList = store.data;
+	// console.log("todoList", todoList);
 	return (
 		<div className="mt-5 bg-light mx-auto p-4 text-secondary" style={{ width: 400 }}>
 			<h1 className="text-center">todos</h1>
@@ -19,13 +20,18 @@ export const Home = () => {
 					onChange={e => setTodo(e.target.value)}
 					value={todo}
 				/>
-				<button className="btn btn-success text-center" onClick={() => actions.addTodo(todo)}>
+				<button
+					className="btn btn-success text-center"
+					onClick={() => actions.addTodo([...todoList, { label: todo, done: false }])}>
 					Add
 				</button>
 				{store.data.map((e, index) => (
 					<div key={index} className="border-top border-bottom text-secondary text-center ">
 						{e.label}
-						<i onClick={() => actions.deleteElement(index)} className="far fa-window-close" />
+						<i
+							onClick={() => actions.deleteElement(store.data.filter(item => e !== item))}
+							className="far fa-window-close"
+						/>
 					</div>
 				))}
 				<div className="counter text-secondary text-left">Item(s) Left {store.data.length} </div>
