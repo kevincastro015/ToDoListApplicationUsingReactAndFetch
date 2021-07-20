@@ -37,6 +37,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 				// console.log(getStore().data);
 			},
 			deleteElement: position => {
+				// let data = getStore().data;
+				// let newArray = data.filter((item, index) => position !== index);
 				fetch("https://assets.breatheco.de/apis/fake/todos/user/kevincastro015", {
 					method: "PUT", //or "POST"
 					body: JSON.stringify(position), // data can be 'string' or {object}!

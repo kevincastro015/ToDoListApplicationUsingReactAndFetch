@@ -9,7 +9,7 @@ export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [todo, setTodo] = useState("");
 	const todoList = store.data;
-	// console.log("todoList", todoList);
+
 	return (
 		<div className="mt-5 bg-light mx-auto p-4 text-secondary" style={{ width: 400 }}>
 			<h1 className="text-center">todos</h1>
@@ -22,7 +22,7 @@ export const Home = () => {
 				/>
 				<button
 					className="btn btn-success text-center"
-					onClick={() => actions.addTodo([...todoList, { label: todo, done: false }])}>
+					onClick={() => actions.addTodo({ label: todo, done: false })}>
 					Add
 				</button>
 				{store.data.map((e, index) => (
