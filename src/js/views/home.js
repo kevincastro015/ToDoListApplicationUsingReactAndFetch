@@ -43,7 +43,7 @@ export const Home = () => {
 								className="far fa-check-square"
 								onClick={() => {
 									setEdit({ state: true, i: index });
-									actions.updateTodo();
+									actions.updateTodo(input, index);
 								}}
 							/>
 						) : (
