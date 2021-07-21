@@ -8,6 +8,8 @@ import { element } from "prop-types";
 export const Home = () => {
 	const { store, actions } = useContext(Context);
 	const [todo, setTodo] = useState("");
+	const [edit, setEdit] = useState({ state: false, i: undefined });
+	const [input, setInput] = useState("");
 	const todoList = store.data;
 
 	return (
@@ -26,23 +28,33 @@ export const Home = () => {
 					Add
 				</button>
 				{store.data.map((e, index) => (
-					<div key={index} className="border-top border-bottom text-secondary text-center ">
-						{e.label}
+					<div key={index} className="border-top border-bottom text-secondary text-center">
+						{!edit.state && edit.i == index ? (
+							<input placeholder={e.label} onChange={e => setInput(e.target.value)} />
+						) : (
+							e.label
+						)}
 						<i
 							onClick={() => actions.deleteElement(store.data.filter(item => e !== item))}
 							className="far fa-window-close"
 						/>
+						{!edit.state && edit.i == index ? (
+							<i
+								className="far fa-check-square"
+								onClick={() => {
+									setEdit({ state: true, i: index });
+									actions.updateTodo();
+								}}
+							/>
+						) : (
+							<i className="fas fa-pencil-alt" onClick={() => setEdit({ state: false, i: index })} />
+						)}
 					</div>
 				))}
 				<div className="counter text-secondary text-left">Item(s) Left {store.data.length} </div>
 			</div>
 			<div className="border mx-auto" style={{ width: "98%", height: 3 }} />
 			<div className="border mx-auto" style={{ width: "96%", height: 3 }} />
-			{/* {!edit ? (
-				<i className="fas fa-pencil-alt" onClick={() => setEdit(true)} />
-			) : (
-				<i className="far fa-check-square" onClick={() => setEdit(false)} />
-			)} */}
 		</div>
 	);
 };
