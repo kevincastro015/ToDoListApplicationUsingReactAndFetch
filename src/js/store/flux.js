@@ -52,7 +52,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 				data[index] = { label: label, done: false };
 				fetch("https://assets.breatheco.de/apis/fake/todos/user/kevincastro015", {
 					method: "PUT", //or "POST"
-					body: JSON.stringify(data[index]), // data can be 'string' or {object}!
+					body: JSON.stringify([data[index]]), // data can be 'string' or {object}!
 					headers: {
 						"Content-Type": "application/json"
 					}
